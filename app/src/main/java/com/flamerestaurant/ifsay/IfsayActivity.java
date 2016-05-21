@@ -26,7 +26,9 @@ public class IfsayActivity extends Activity {
         setContentView(R.layout.activity_ifsay);
 
         realm = Realm.getDefaultInstance();
-        results = realm.where(Ifsay.class).findAll();
+
+        int qustionId = getIntent().getIntExtra("QustionId", 4);
+        results = realm.where(Ifsay.class).equalTo("questionId", qustionId).findAll();
 
         pager = (ViewPager) findViewById(R.id.ifsay_pager);
         pager.setAdapter(new Adapter());

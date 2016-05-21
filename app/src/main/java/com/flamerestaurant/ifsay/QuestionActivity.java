@@ -34,6 +34,7 @@ public class QuestionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HueManager.fadeIn();
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();

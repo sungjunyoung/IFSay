@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.realm.Ifsay;
+
 import io.realm.Realm;
 
 public class QuestionActivity extends Activity {

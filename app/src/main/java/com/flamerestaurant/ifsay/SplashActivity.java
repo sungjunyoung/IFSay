@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
+
 public class SplashActivity extends Activity {
 
     @Override
@@ -18,7 +20,8 @@ public class SplashActivity extends Activity {
                 Intent intent = new Intent(SplashActivity.this, QuestionActivity.class);
                 startActivity(intent);
                 finish();
+                HueManager.fadeIn();
             }
-        }, 0);
+        }, 2000);
     }
 }

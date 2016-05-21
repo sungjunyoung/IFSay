@@ -1,6 +1,7 @@
 package com.flamerestaurant.ifsay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
@@ -42,12 +44,21 @@ public class IfsayActivity extends Activity {
 
         pager = (ViewPager) findViewById(R.id.ifsay_pager);
         pager.setAdapter(new Adapter());
+
+        findViewById(R.id.main_go_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IfsayActivity.this, CircleListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+        HueManager.fadeOut();
     }
 
     private class Adapter extends PagerAdapter {

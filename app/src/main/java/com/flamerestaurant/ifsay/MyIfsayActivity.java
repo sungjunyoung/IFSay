@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 
 import io.realm.Realm;
@@ -43,6 +44,7 @@ public class MyIfsayActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+        HueManager.fadeOut();
     }
 
     class Adapter extends RecyclerView.Adapter<Holder> {

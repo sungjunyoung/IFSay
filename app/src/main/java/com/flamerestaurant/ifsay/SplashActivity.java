@@ -70,9 +70,9 @@ public class SplashActivity extends Activity {
         Ifsay ifsay7 = new Ifsay(6,4,"은범","끊어놓고 세번 갔던 PT를 끝까지 갔을꺼다. 돈도 돈이지만, 그때 운동했다면 ㅜ.ㅜ 술 조금만 덜먹고 더 뛰었다면.. 퇴원하면 꼭 다시 운동 열심히 할거다.",77,new Date(2016,5,22),"#ffffff");
         Ifsay ifsay8 = new Ifsay(7,4,"예진","저는 소설쓰는걸 배울거에요. 병원에 와서 책을 많이 읽고 써보기도하는데, 어떻게 시작해야할지 모르겠어요. 소설쓰는 법을 배우고 여행을 많이 다니면서 좋은 책을 쓰고싶어요",21,new Date(2016,5,22),"#ffffff");
         Ifsay ifsay9 = new Ifsay(8,4,"준영","회사 영업왕 실적을 꼭 찍을거에요. 힘들다고 욕하는 회사지만 사실 정말 재미있게 다녔거든요.. 선배들한테 배운걸 써먹고, 제 한계를 시험하고 싶어요",45,new Date(2016,5,22),"#ffffff");
-        Ifsay ifsay10 = new Ifsay(10,5,"예진","보약을 매일매일 챙겨먹을꺼야",6,new Date(2016,5,28),"#ffffff");
-        Ifsay ifsay11 = new Ifsay(11,5,"결","짝사랑하던 단짝친구에게 고백할꺼야",13,new Date(2016,5,28),"#ffffff");
-        Ifsay ifsay12 = new Ifsay(12,2,"은범","그러지 말았어야 했다.",27,new Date(2016,5,20),"#ffffff");
+        Ifsay ifsay10 = new Ifsay(9,5,"예진","보약을 매일매일 챙겨먹을꺼야",6,new Date(2016,5,28),"#ffffff");
+        Ifsay ifsay11 = new Ifsay(10,5,"결","짝사랑하던 단짝친구에게 고백할꺼야",13,new Date(2016,5,28),"#ffffff");
+        Ifsay ifsay12 = new Ifsay(11,2,"은범","그러지 말았어야 했다.",27,new Date(2016,5,20),"#ffffff");
         ifsayList.add(ifsay1); ifsayList.add(ifsay2);
         ifsayList.add(ifsay3); ifsayList.add(ifsay4);
         ifsayList.add(ifsay5); ifsayList.add(ifsay6);

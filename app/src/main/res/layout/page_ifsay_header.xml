@@ -8,13 +8,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/user_profile"
+            android:id="@+id/user" />
+
         <TextView
             android:id="@+id/ifsay_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="엄마가보고싶다"
-            android:textSize="10sp" />
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp" />
 
     </LinearLayout>
 
@@ -25,7 +32,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
         android:text="피아노 학원을 끝까지 다닐거야. 어릴때는 왜 그렇게 도망갔을까? 여자친구에게 피아노 치며 노래불러주고 싶다. "
-        android:textSize="15sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

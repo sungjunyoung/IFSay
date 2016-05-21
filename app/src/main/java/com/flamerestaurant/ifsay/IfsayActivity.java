@@ -19,6 +19,7 @@ import com.flamerestaurant.ifsay.realm.Question;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class IfsayActivity extends Activity {
 
@@ -40,7 +41,7 @@ public class IfsayActivity extends Activity {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         questionTitle.setText(question.getContent());
 
-        results = realm.where(Ifsay.class).equalTo("questionId", questionId).findAll();
+        results = realm.where(Ifsay.class).equalTo("questionId", questionId).findAllSorted("ifsayId", Sort.DESCENDING);
 
         pager = (ViewPager) findViewById(R.id.ifsay_pager);
         pager.setAdapter(new Adapter());

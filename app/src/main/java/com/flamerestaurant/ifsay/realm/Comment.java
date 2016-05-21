@@ -6,12 +6,22 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Comment extends RealmObject {
-    @PrimaryKey
     private int commentId;
     private int ifsayId;
     private String content;
     private String writer;
     private Date date;
+
+    public Comment(int commentId, int ifsayId, String content, String writer, Date date) {
+        super();
+        this.commentId = commentId;
+        this.ifsayId = ifsayId;
+        this.content = content;
+        this.writer = writer;
+        this.date = date;
+    }
+    public Comment(){}
+
 
     public int getCommentId() {
         return commentId;

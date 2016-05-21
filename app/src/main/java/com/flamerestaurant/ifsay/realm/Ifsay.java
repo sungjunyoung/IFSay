@@ -14,6 +14,20 @@ public class Ifsay extends RealmObject {
     private Date date;
     private String rgb;
 
+    public Ifsay(int ifsayId, int questionId, String writer, String content, int ifsayCount, Date date, String rgb) {
+        super();
+        this.ifsayId = ifsayId;
+        this.questionId = questionId;
+        this.writer = writer;
+        this.content = content;
+        this.ifsayCount = ifsayCount;
+        this.date = date;
+        this.rgb = rgb;
+    }
+
+    public Ifsay(){
+    }
+
     public int getIfsayId() {
         return ifsayId;
     }

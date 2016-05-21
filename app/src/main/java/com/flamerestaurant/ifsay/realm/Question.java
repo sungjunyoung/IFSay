@@ -6,10 +6,20 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Question extends RealmObject {
-    @PrimaryKey
     private int questionId;
     private String content;
     private Date date;
+
+    public Question(int questionId, String content, Date date) {
+        super();
+        this.questionId = questionId;
+        this.content = content;
+        this.date = date;
+    }
+
+    public Question(){
+
+    }
 
     public int getQuestionId() {
         return questionId;

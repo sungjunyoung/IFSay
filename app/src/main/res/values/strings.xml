@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IF SAY</string>
+    <string name="app_name">IFSAY</string>
 
     <string name="title_activity_my_ifsay">MyIfsayActivity</string>
     <string name="dummy_button">Dummy Button</string>

@@ -1,9 +1,9 @@
 package com.flamerestaurant.ifsay;
 
-import android.app.TabActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class MyIfsayActivity extends TabActivity {
+public class MyIfsayActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

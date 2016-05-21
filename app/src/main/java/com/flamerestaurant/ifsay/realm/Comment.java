@@ -3,7 +3,6 @@ package com.flamerestaurant.ifsay.realm;
 import java.util.Date;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 public class Comment extends RealmObject {
     private int commentId;
@@ -20,8 +19,9 @@ public class Comment extends RealmObject {
         this.writer = writer;
         this.date = date;
     }
-    public Comment(){}
 
+    public Comment() {
+    }
 
     public int getCommentId() {
         return commentId;

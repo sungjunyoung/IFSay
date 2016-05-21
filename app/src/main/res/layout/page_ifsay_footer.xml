@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/ifsay_comment"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="#22000000"
+        android:paddingLeft="10dp"
+        android:text="IF 공감한다면..." />
+
+
+    <FrameLayout
+        android:id="@+id/comment_say"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/green_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="SAY"
+            android:textColor="#fff" />
+    </FrameLayout>
+</LinearLayout>

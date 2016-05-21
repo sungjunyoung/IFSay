@@ -8,11 +8,8 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +18,6 @@ import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,8 +28,6 @@ import io.realm.RealmResults;
 
 public class QuestionActivity extends Activity {
 
-    private static int PAGE_SIZE = 5;
-
     private Realm realm;
 
     private ViewPager pager;
@@ -43,7 +37,7 @@ public class QuestionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //HueManager.fadeIn();
+        HueManager.fadeIn();
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();
@@ -55,7 +49,7 @@ public class QuestionActivity extends Activity {
         myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
+                if (status != TextToSpeech.ERROR) {
                     myTTS.setLanguage(Locale.KOREAN);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ttsGreater21("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
@@ -67,6 +61,7 @@ public class QuestionActivity extends Activity {
         });
 
     }
+
     @SuppressWarnings("deprecation")
     private void ttsUnder20(String text) {
         HashMap<String, String> map = new HashMap<>();
@@ -76,9 +71,10 @@ public class QuestionActivity extends Activity {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void ttsGreater21(String text) {
-        String utteranceId=this.hashCode() + "";
+        String utteranceId = this.hashCode() + "";
         myTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -129,11 +125,10 @@ public class QuestionActivity extends Activity {
             TextView body = (TextView) view.findViewById(R.id.today_body);
             title.setText(question.getContent());
 
-            if("06월 28일".equals(sf.format(question.getDate()).toString())){
+            if ("06월 28일".equals(sf.format(question.getDate()).toString())) {
                 body.setText("오늘의 질문");
-            }
-            else{
-                body.setText(sf.format(question.getDate()).toString()+"의 질문");
+            } else {
+                body.setText(sf.format(question.getDate()).toString() + "의 질문");
             }
 
 

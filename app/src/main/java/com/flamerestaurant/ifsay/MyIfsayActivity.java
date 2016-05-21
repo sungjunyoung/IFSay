@@ -1,7 +1,6 @@
 package com.flamerestaurant.ifsay;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.realm.Ifsay;
-
-import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -48,7 +45,7 @@ public class MyIfsayActivity extends Activity {
         realm.close();
     }
 
-    class Adapter extends RecyclerView.Adapter<Holder>{
+    class Adapter extends RecyclerView.Adapter<Holder> {
 
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,7 +66,7 @@ public class MyIfsayActivity extends Activity {
         }
     }
 
-    class Holder extends RecyclerView.ViewHolder{
+    class Holder extends RecyclerView.ViewHolder {
         public TextView question_textview;
         public TextView ifsay_textview;
         public TextView like_count;

@@ -120,15 +120,14 @@ public class QuestionActivity extends Activity {
     }
 
     public void onClickWite(View view) {
-        Ifsay ifsay = new Ifsay();
+        realm.beginTransaction();
+
+        Ifsay ifsay = realm.createObject(Ifsay.class);
         ifsay.setQuestionId(pager.getCurrentItem());
         ifsay.setContent(edit.getText().toString());
 
-        realm.beginTransaction();
-        realm.copyToRealm(ifsay);
         realm.commitTransaction();
 
-        HueManager.twinkle(1);
         startActivity(new Intent(this, IfsayActivity.class));
     }
 

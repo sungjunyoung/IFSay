@@ -6,7 +6,6 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Ifsay extends RealmObject {
-    @PrimaryKey
     private int ifsayId;
     private int questionId;
     private String writer;

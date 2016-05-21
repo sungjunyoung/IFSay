@@ -13,29 +13,91 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#0f0" />
-
         <TextView
             android:id="@+id/ifsay_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
             android:text="엄마가보고싶다"
-            android:textSize="20sp" />
+            android:textSize="10sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/ifsay_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
         android:text="피아노 학원을 끝까지 다닐거야. 어릴때는 왜 그렇게 도망갔을까? 여자친구에게 피아노 치며 노래불러주고 싶다. "
-        android:textSize="30sp" />
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/green_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="314명이 잎새를 달았습니다." />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCC" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ifsay_comment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ifsay_comment"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#22000000"
+            android:paddingLeft="10dp"
+            android:text="IF 공감한다면..." />
+
+
+        <FrameLayout
+            android:id="@+id/comment_say"
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/green_logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="SAY"
+                android:textColor="#fff" />
+        </FrameLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

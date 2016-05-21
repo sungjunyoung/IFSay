@@ -65,7 +65,6 @@ public class HueManager {
                 onAndOff(PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
                 PHUtilities.calculateXYFromRGB(220, 20, 60, bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
             }
-
             public void onFinish() {
             }
         }.start();

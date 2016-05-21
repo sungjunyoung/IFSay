@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
@@ -26,15 +25,13 @@ public class SplashActivity extends Activity {
 
         realm = Realm.getDefaultInstance();
 
-        dataInit();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                dataInit();
                 Intent intent = new Intent(SplashActivity.this, QuestionActivity.class);
                 startActivity(intent);
                 finish();
-                HueManager.fadeIn();
             }
         }, 2000);
     }

@@ -109,6 +109,7 @@ public class QuestionActivity extends Activity {
                     ifsay.setRgb("#ffffff");
                     ifsay.setDate(new Date(2016, 5, 22));
                     ifsay.setIfsayId(30);
+                    ifsay.setIfsayCount(0);
 
                     realm.commitTransaction();
 

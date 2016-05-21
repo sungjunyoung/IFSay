@@ -13,39 +13,42 @@
         android:id="@+id/today_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="22dp"
         android:text="TITLE"
-        android:textSize="30sp"
+        android:textSize="25dp"
         android:layout_below="@+id/today_body"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/today_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
         android:text="BODY"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/today_write_text"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="top"/>
 
-    <Button
+    <ImageView
         android:id="@+id/today_write_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickWite"
-        android:text="SAY"
-        android:layout_marginBottom="31dp"
         android:elegantTextHeight="false"
+        android:src="@drawable/send_btn"
+        android:layout_marginBottom="27dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

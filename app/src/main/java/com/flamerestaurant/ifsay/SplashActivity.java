@@ -50,11 +50,11 @@ public class SplashActivity extends Activity {
         realm.clear(Comment.class);
 
         RealmList<Question> questionList = new RealmList<Question>();
-        Question question1 = new Question(0,"어린 시절에서, 단 하나만 바꿀 수 있다면, 무엇을 바꾸겠는가?",new Date(2016,5,28));
-        Question question2 = new Question(1,"어제 봤는데, 오늘도 보고싶고, 내일도 보고싶은 인생의 영화는?",new Date(2016,5,19));
-        Question question3 = new Question(2,"당신의 자서전 첫 문장은 어떻게 시작할것인가?",new Date(2016,5,20));
-        Question question4 = new Question(3,"오늘 10억원이 생겼다. 무엇을 하겠는가?",new Date(2016,5,21));
-        Question question5 = new Question(4,"입원하기 직전으로 돌아간다면, 나는 무엇을 할까?",new Date(2016,5,22));
+        Question question1 = new Question(0,"어린 시절에서, 단 하나만 바꿀 수 있다면, 무엇을 바꾸겠어요?",new Date(2016,5,28));
+        Question question2 = new Question(1,"어제 봤는데, 오늘도 보고싶고, 내일도 보고싶은 인생의 영화는 무엇이었나요?",new Date(2016,5,19));
+        Question question3 = new Question(2,"당신의 자서전 첫 문장은 어떻게 시작할까요?",new Date(2016,5,20));
+        Question question4 = new Question(3,"오늘 10억원이 생겼습니다. 당신은 무엇을 할까요?",new Date(2016,5,21));
+        Question question5 = new Question(4,"입원하기 직전으로 돌아간다면, 나는 무엇을 할까요?",new Date(2016,5,22));
         questionList.add(question1); questionList.add(question2);
         questionList.add(question3); questionList.add(question4);
         questionList.add(question5);

@@ -5,11 +5,13 @@
     android:background="#0099cc"
     tools:context="com.flamerestaurant.ifsay.AlarmActivity">
 
+
     <RelativeLayout
         android:id="@+id/circle_ifsay_main"
         android:background="@color/abc_search_url_text_selected"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/friendList"
             android:layout_alignTop="@+id/navigation"
@@ -18,6 +20,7 @@
             android:background="#FFFFFF"
             android:layout_alignParentTop="true">
         </android.support.v7.widget.RecyclerView>
+
         <LinearLayout
             android:background="#45bf55"
             android:layout_alignParentBottom="true"

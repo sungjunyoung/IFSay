@@ -3,13 +3,18 @@ package com.flamerestaurant.ifsay;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
+import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHLight;
 
 import java.util.List;
@@ -24,7 +29,11 @@ public class AlarmActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         recyclerView = (RecyclerView) findViewById(R.id.friendList);
+        recyclerView.setAdapter(new Adapter());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        phLightList = PHHueSDK.getInstance().getSelectedBridge().getResourceCache().getAllLights();
+        Log.d("HUE", phLightList + "");
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
         double unitWidth = width / 5.0;
@@ -75,7 +84,7 @@ public class AlarmActivity extends Activity {
         });
     }
 
-    class Adapter extends RecyclerView.Adapter<Holder>{
+    class Adapter extends RecyclerView.Adapter<Holder> {
 
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -84,9 +93,20 @@ public class AlarmActivity extends Activity {
         }
 
         @Override
-        public void onBindViewHolder(Holder holder, int position) {
-//            holder.name.setText(String.valueOf(phLightList.()));
-//            holder.lightId.setText(phLightList.getContent());
+        public void onBindViewHolder(Holder holder, final int position) {
+            PHLight phLight = phLightList.get(position);
+            holder.name.setText(phLight.getName());
+            holder.lightId.setText(phLight.getIdentifier());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (position != 2) {
+                        Toast.makeText(AlarmActivity.this, "Cannot call", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    HueManager.alert(3);
+                }
+            });
         }
 
         @Override

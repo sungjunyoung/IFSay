@@ -52,9 +52,9 @@ public class QuestionActivity extends Activity {
                 if (status != TextToSpeech.ERROR) {
                     myTTS.setLanguage(Locale.KOREAN);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        ttsGreater21("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
+                        ttsGreater21("어린 시절에서, 단 하나만 바꿀 수 있다면, 무엇을 바꾸겠어요?");
                     } else {
-                        ttsUnder20("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
+                        ttsUnder20("어린 시절에서 단 하나만 바꿀 수 있다면 무엇을 바꾸겠어요?");
                     }
                 }
             }

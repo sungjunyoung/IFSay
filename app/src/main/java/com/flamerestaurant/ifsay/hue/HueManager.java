@@ -50,27 +50,42 @@ public class HueManager {
         new CountDownTimer(1200 * (times + 1), 1200) {
             public void onTick(long millisUntilFinished) {
                 PHBridge bridge = phHueSDK.getSelectedBridge();
-                PHLightState lightState = new PHLightState();
-                float xy[] = PHUtilities.calculateXYFromRGB(23, 63, 28, bridge.getResourceCache().getAllLights().get(2).getModelNumber());
-                lightState.setX(xy[0]);
-                lightState.setY(xy[1]);
-                bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        PHBridge bridge = phHueSDK.getSelectedBridge();
-                        PHLightState lightState = new PHLightState();
-                        float xyDefault[] = PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber());
-                        lightState.setX(xyDefault[0]);
-                        lightState.setY(xyDefault[1]);
-                        bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
-                    }
-                }, 500);
+                onAndOff(PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
+                PHUtilities.calculateXYFromRGB(23, 63, 28, bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
             }
 
             public void onFinish() {
             }
         }.start();
+    }
+    public static void alert(final int times) {
+        new CountDownTimer(1200 * (times + 1), 1200) {
+            public void onTick(long millisUntilFinished) {
+                PHBridge bridge = phHueSDK.getSelectedBridge();
+                onAndOff(PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
+                PHUtilities.calculateXYFromRGB(220, 20, 60, bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
+            }
 
+            public void onFinish() {
+            }
+        }.start();
+    }
+
+    private static void onAndOff(final float[] defaultXy, final float[] changedXy) {
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        PHLightState lightState = new PHLightState();
+        lightState.setX(changedXy[0]);
+        lightState.setY(changedXy[1]);
+        bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                PHBridge bridge = phHueSDK.getSelectedBridge();
+                PHLightState lightState = new PHLightState();
+                lightState.setX(defaultXy[0]);
+                lightState.setY(defaultXy[1]);
+                bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+            }
+        }, 500);
     }
 }

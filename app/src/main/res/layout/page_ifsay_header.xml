@@ -46,11 +46,11 @@
             android:src="@drawable/green_logo" />
 
         <TextView
+            android:id="@+id/ifsay_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:text="314명이 잎새를 달았습니다." />
+            android:layout_marginLeft="5dp" />
 
     </LinearLayout>
 

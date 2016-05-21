@@ -67,6 +67,28 @@ public class CircleListActivity extends Activity {
         });
     }
 
+    public void onClickQuestion(View v) {
+        Intent intent = new Intent(this, IfsayActivity.class);
+        int questionId;
+        switch (v.getId()) {
+//            case R.id.question0:
+//                questionId = 0;
+//                break;
+//            case R.id.question1:
+//                questionId = 1;
+//                break;
+//            case R.id.question2:
+//                questionId = 2;
+//                break;
+//            case R.id.question3:
+//                questionId = 3;
+//                break;
+            default:
+                questionId = 4;
+        }
+        intent.putExtra("questionId", questionId);
+        startActivity(intent);
+    }
 
     @Override
     protected void onDestroy() {

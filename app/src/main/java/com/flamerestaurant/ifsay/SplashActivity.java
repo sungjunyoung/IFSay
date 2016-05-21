@@ -18,6 +18,7 @@ import io.realm.RealmList;
 public class SplashActivity extends Activity {
 
     private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,18 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MyIfsayActivity.class);
+                Intent intent = new Intent(SplashActivity.this, QuestionActivity.class);
                 startActivity(intent);
                 finish();
                 HueManager.fadeIn();
             }
         }, 2000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     private void dataInit() {
@@ -101,7 +108,6 @@ public class SplashActivity extends Activity {
         commentList.add(comment11); commentList.add(comment12);
         commentList.add(comment13); commentList.add(comment14);
         commentList.add(comment15); commentList.add(comment16);
-
 
         realm.copyToRealm(commentList);
         realm.copyToRealm(ifsayList);

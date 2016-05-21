@@ -1,8 +1,11 @@
 package com.flamerestaurant.ifsay;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -12,6 +15,9 @@ import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
+
+import java.util.HashMap;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -23,6 +29,7 @@ public class QuestionActivity extends Activity {
 
     private ViewPager pager;
     private EditText edit;
+    private TextToSpeech myTTS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +42,39 @@ public class QuestionActivity extends Activity {
         pager.setAdapter(new Adapter());
 
         edit = (EditText) findViewById(R.id.today_write_text);
+        myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    myTTS.setLanguage(Locale.KOREAN);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ttsGreater21("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
+                    } else {
+                        ttsUnder20("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
+                    }
+                }
+            }
+        });
 
     }
+    @SuppressWarnings("deprecation")
+    private void ttsUnder20(String text) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "MessageId");
+        myTTS.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+    }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void ttsGreater21(String text) {
+        String utteranceId=this.hashCode() + "";
+        myTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
         HueManager.fadeOut();
+        myTTS.shutdown();
     }
 
     public void onClickWite(View view) {
@@ -78,6 +110,7 @@ public class QuestionActivity extends Activity {
             body.setText(String.format("내용 %d", position));
 
             container.addView(view);
+
             return view;
         }
 

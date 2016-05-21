@@ -28,8 +28,6 @@ import io.realm.RealmResults;
 
 public class QuestionActivity extends Activity {
 
-    private static int PAGE_SIZE = 5;
-
     private Realm realm;
 
     private ViewPager pager;
@@ -43,7 +41,7 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();
-        results = realm.where(Question.class).findAll();
+        results = realm.where(Question.class).findAllSorted("questionId");
 
         pager = (ViewPager) findViewById(R.id.today_pager);
         pager.setAdapter(new Adapter());
@@ -51,7 +49,7 @@ public class QuestionActivity extends Activity {
         myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
+                if (status != TextToSpeech.ERROR) {
                     myTTS.setLanguage(Locale.KOREAN);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ttsGreater21("과거로 돌아간다면 무엇이 가장 하고싶으신가요");
@@ -63,6 +61,7 @@ public class QuestionActivity extends Activity {
         });
 
     }
+
     @SuppressWarnings("deprecation")
     private void ttsUnder20(String text) {
         HashMap<String, String> map = new HashMap<>();
@@ -72,7 +71,7 @@ public class QuestionActivity extends Activity {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void ttsGreater21(String text) {
-        String utteranceId=this.hashCode() + "";
+        String utteranceId = this.hashCode() + "";
         myTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
     }
 
@@ -113,22 +112,27 @@ public class QuestionActivity extends Activity {
 
                     realm.commitTransaction();
 
-                    Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
-                    intent.putExtra("QustionId", pager.getCurrentItem());
                     HueManager.twinkle(3);
+                    Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
+                    intent.putExtra("questionId", pager.getCurrentItem());
                     startActivity(intent);
                 }
             });
 
 
-            SimpleDateFormat sf = new SimpleDateFormat("yy년 MM월 dd일");
+            SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
             TextView title = (TextView) view.findViewById(R.id.today_title);
             TextView body = (TextView) view.findViewById(R.id.today_body);
             title.setText(question.getContent());
-            body.setText(sf.format(question.getDate()).toString());
+
+            if ("06월 28일".equals(sf.format(question.getDate()).toString())) {
+                body.setText("오늘의 질문");
+            } else {
+                body.setText(sf.format(question.getDate()).toString() + "의 질문");
+            }
+
 
             container.addView(view);
-
             return view;
         }
 

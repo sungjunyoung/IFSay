@@ -47,7 +47,7 @@ public class MyIfsayActivity extends Activity {
         HueManager.fadeOut();
     }
 
-    class Adapter extends RecyclerView.Adapter<Holder>{
+    class Adapter extends RecyclerView.Adapter<Holder> {
 
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,7 +68,7 @@ public class MyIfsayActivity extends Activity {
         }
     }
 
-    class Holder extends RecyclerView.ViewHolder{
+    class Holder extends RecyclerView.ViewHolder {
         public TextView question_textview;
         public TextView ifsay_textview;
         public TextView like_count;

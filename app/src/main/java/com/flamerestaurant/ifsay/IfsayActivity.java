@@ -45,10 +45,12 @@ public class IfsayActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view = getLayoutInflater().inflate(R.layout.page_ifsay, container, false);
-            TextView textView = (TextView) view.findViewById(R.id.ifsay_content);
+            TextView writer = (TextView) view.findViewById(R.id.ifsay_writer);
+            TextView content = (TextView) view.findViewById(R.id.ifsay_content);
 
             Ifsay ifsay = results.get(position);
-            textView.setText(ifsay.getContent());
+            writer.setText(ifsay.getWriter());
+            content.setText(ifsay.getContent());
 
             container.addView(view);
             return view;

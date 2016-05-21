@@ -126,7 +126,7 @@ public class QuestionActivity extends Activity {
             TextView body = (TextView) view.findViewById(R.id.today_body);
             title.setText(question.getContent());
 
-            if ("06월 28일".equals(sf.format(question.getDate()).toString())) {
+            if ("05월 28일".equals(sf.format(question.getDate()).toString())) {
                 body.setText("오늘의 질문");
             } else {
                 body.setText(sf.format(question.getDate()).toString() + "의 질문");

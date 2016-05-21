@@ -65,7 +65,6 @@ public class IfsayActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
-        HueManager.fadeOut();
     }
 
     private class Adapter extends PagerAdapter {
@@ -159,6 +158,7 @@ public class IfsayActivity extends Activity {
                             refresh();
                             notifyDataSetChanged();
                             recyclerView.scrollToPosition(getItemCount() - 1);
+                            HueManager.twinkle(2);
                         }
                     });
                     break;

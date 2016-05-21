@@ -5,6 +5,9 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="ifsay_count">102개</string>
+    <string name="bridge_info_file">BridgeInfo</string>
+    <string name="bridge_ip_key">BRIDGE_IP</string>
+    <string name="bridge_user_name_key">BRIDGE_USER_NAME</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

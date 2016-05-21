@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 
 import io.realm.Realm;
@@ -34,12 +35,14 @@ public class QuestionActivity extends Activity {
         pager.setAdapter(new Adapter());
 
         edit = (EditText) findViewById(R.id.today_write_text);
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+        HueManager.fadeOut();
     }
 
     public void onClickWite(View view) {
@@ -53,6 +56,7 @@ public class QuestionActivity extends Activity {
 
         Intent intent = new Intent(this, IfsayActivity.class);
         intent.putExtra("QustionId", pager.getCurrentItem());
+        HueManager.twinkle(3);
         startActivity(intent);
     }
 

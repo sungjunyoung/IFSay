@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmObject;
-
 
 public class SplashActivity extends Activity {
 
@@ -25,8 +22,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-
 
         realm = Realm.getDefaultInstance();
 
@@ -38,8 +33,9 @@ public class SplashActivity extends Activity {
                 Intent intent = new Intent(SplashActivity.this, MyIfsayActivity.class);
                 startActivity(intent);
                 finish();
+                HueManager.fadeIn();
             }
-        }, 0);
+        }, 2000);
     }
 
     private void dataInit() {

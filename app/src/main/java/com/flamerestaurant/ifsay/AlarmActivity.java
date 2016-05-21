@@ -43,7 +43,7 @@ public class AlarmActivity extends Activity {
         treeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlarmActivity.this, IfsayActivity.class);
+                Intent intent = new Intent(AlarmActivity.this, CircleListActivity.class);
                 startActivity(intent);
             }
         });

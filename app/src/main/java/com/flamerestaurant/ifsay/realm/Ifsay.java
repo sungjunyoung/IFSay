@@ -69,4 +69,5 @@ public class Ifsay extends RealmObject {
     public void setRgb(String rgb) {
         this.rgb = rgb;
     }
+
 }

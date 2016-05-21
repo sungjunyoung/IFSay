@@ -128,7 +128,9 @@ public class QuestionActivity extends Activity {
 
         realm.commitTransaction();
 
-        startActivity(new Intent(this, IfsayActivity.class));
+        Intent intent = new Intent(this, IfsayActivity.class);
+        intent.putExtra("QustionId", pager.getCurrentItem());
+        startActivity(intent);
     }
 
     private class Adapter extends PagerAdapter {

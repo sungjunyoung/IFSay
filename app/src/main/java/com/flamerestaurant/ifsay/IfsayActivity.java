@@ -17,6 +17,8 @@ import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
 
+import java.text.SimpleDateFormat;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -40,6 +42,10 @@ public class IfsayActivity extends Activity {
         Question question = realm.where(Question.class).equalTo("questionId", questionId).findFirst();
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         questionTitle.setText(question.getContent());
+
+        SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+        TextView date = (TextView) findViewById(R.id.ifsay_date);
+        date.setText(sf.format(question.getDate()) + "의 질문");
 
         results = realm.where(Ifsay.class).equalTo("questionId", questionId).findAllSorted("ifsayId", Sort.DESCENDING);
 

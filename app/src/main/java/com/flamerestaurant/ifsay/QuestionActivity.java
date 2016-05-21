@@ -1,24 +1,55 @@
 package com.flamerestaurant.ifsay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class TodayActivity extends Activity {
+import io.realm.Realm;
+
+public class QuestionActivity extends Activity {
 
     private static int PAGE_SIZE = 5;
+
+    private Realm realm;
+
+    private ViewPager pager;
+    private EditText edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today);
+        setContentView(R.layout.activity_question);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.today_pager);
+        realm = Realm.getDefaultInstance();
+
+        pager = (ViewPager) findViewById(R.id.today_pager);
         pager.setAdapter(new Adapter());
+
+        edit = (EditText) findViewById(R.id.today_write_text);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
+    public void onClickWite(View view) {
+        Ifsay ifsay = new Ifsay();
+        ifsay.setId(pager.getCurrentItem());
+        ifsay.setContent(edit.getText().toString());
+
+        realm.beginTransaction();
+        realm.copyToRealm(ifsay);
+        realm.commitTransaction();
+
+        startActivity(new Intent(this, IfsayActivity.class));
     }
 
     private class Adapter extends PagerAdapter {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.flamerestaurant.ifsay.TodayActivity">
+    tools:context=".QuestionActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/today_pager"
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:onClick="onClickWite"
         android:text="send" />
 
 </RelativeLayout>

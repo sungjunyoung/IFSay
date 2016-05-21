@@ -71,7 +71,6 @@ public class SearchActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        HueManager.fadeOut();
     }
 
 }

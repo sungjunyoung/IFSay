@@ -18,6 +18,7 @@ import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHLight;
 
 import java.util.List;
+import java.util.Random;
 
 public class AlarmActivity extends Activity {
 
@@ -104,7 +105,7 @@ public class AlarmActivity extends Activity {
                         Toast.makeText(AlarmActivity.this, "Cannot call", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    HueManager.alert(3);
+                    HueManager.alert(new Random().nextInt(7));
                 }
             });
         }

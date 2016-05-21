@@ -8,8 +8,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.flamerestaurant.ifsay.hue.HueManager;
-
 public class CircleListActivity extends Activity {
     private final Handler mHideHandler = new Handler();
 
@@ -93,7 +91,6 @@ public class CircleListActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        HueManager.fadeOut();
     }
 
 }

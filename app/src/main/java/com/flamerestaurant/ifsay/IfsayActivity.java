@@ -32,7 +32,7 @@ public class IfsayActivity extends Activity {
 
         realm = Realm.getDefaultInstance();
 
-        int questionId = getIntent().getIntExtra("QuestionId", 4);
+        int questionId = getIntent().getIntExtra("questionId", 4);
 
         Question question = realm.where(Question.class).equalTo("questionId", questionId).findFirst();
         TextView questionTitle = (TextView) findViewById(R.id.question_title);

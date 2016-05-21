@@ -41,7 +41,7 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();
-        results = realm.where(Question.class).findAll();
+        results = realm.where(Question.class).findAllSorted("questionId");
 
         pager = (ViewPager) findViewById(R.id.today_pager);
         pager.setAdapter(new Adapter());
@@ -112,9 +112,9 @@ public class QuestionActivity extends Activity {
 
                     realm.commitTransaction();
 
-                    Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
-                    intent.putExtra("QustionId", pager.getCurrentItem());
                     HueManager.twinkle(3);
+                    Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
+                    intent.putExtra("questionId", pager.getCurrentItem());
                     startActivity(intent);
                 }
             });

@@ -30,9 +30,15 @@ public class QuestionActivity extends Activity {
 
     private Realm realm;
 
-    private ViewPager pager;
     private TextToSpeech myTTS;
     private RealmResults<Question> results;
+    private Adapter pagerAdapter;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pagerAdapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +49,9 @@ public class QuestionActivity extends Activity {
         realm = Realm.getDefaultInstance();
         results = realm.where(Question.class).findAllSorted("questionId");
 
-        pager = (ViewPager) findViewById(R.id.today_pager);
-        pager.setAdapter(new Adapter());
+        ViewPager pager = (ViewPager) findViewById(R.id.today_pager);
+        pagerAdapter = new Adapter();
+        pager.setAdapter(pagerAdapter);
 
         myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -86,36 +93,52 @@ public class QuestionActivity extends Activity {
     private class Adapter extends PagerAdapter {
 
         @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
         public int getCount() {
             return results.size();
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             View view = getLayoutInflater().inflate(R.layout.layout_today_page, container, false);
             Question question = results.get(position);
             final EditText edit = (EditText) view.findViewById(R.id.today_write_text);
             ImageView sendBtn = (ImageView) view.findViewById(R.id.today_write_button);
+
+            final Ifsay myIfsay = realm.where(Ifsay.class)
+                    .equalTo("writer", "나")
+                    .equalTo("questionId", position)
+                    .findFirst();
+
+            if (myIfsay != null) {
+                edit.setText(myIfsay.getContent());
+                edit.setEnabled(false);
+            }
+
             sendBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    realm.beginTransaction();
+                    if (myIfsay == null) {
+                        realm.beginTransaction();
 
-                    Ifsay ifsay = realm.createObject(Ifsay.class);
-                    ifsay.setQuestionId(pager.getCurrentItem());
+                        Ifsay ifsay = realm.createObject(Ifsay.class);
+                        ifsay.setQuestionId(position);
+                        ifsay.setContent(edit.getText().toString());
+                        ifsay.setWriter("나");
+                        ifsay.setRgb("#ffffff");
+                        ifsay.setDate(new Date(2016, 4, 22));
+                        ifsay.setIfsayId(30);
+                        ifsay.setIfsayCount(0);
 
-                    ifsay.setContent(edit.getText().toString());
-                    ifsay.setWriter("준영");
-                    ifsay.setRgb("#ffffff");
-                    ifsay.setDate(new Date(2016, 5, 22));
-                    ifsay.setIfsayId(30);
-                    ifsay.setIfsayCount(0);
-
-                    realm.commitTransaction();
-
+                        realm.commitTransaction();
+                    }
                     HueManager.twinkle(3);
                     Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
-                    intent.putExtra("questionId", pager.getCurrentItem());
+                    intent.putExtra("questionId", position);
                     startActivity(intent);
                 }
             });
@@ -131,7 +154,6 @@ public class QuestionActivity extends Activity {
             } else {
                 body.setText(sf.format(question.getDate()).toString() + "의 질문");
             }
-
 
             container.addView(view);
             return view;

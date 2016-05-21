@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.hue.HueManager;
@@ -42,7 +43,7 @@ public class QuestionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HueManager.fadeIn();
+        //HueManager.fadeIn();
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();
@@ -98,7 +99,7 @@ public class QuestionActivity extends Activity {
             View view = getLayoutInflater().inflate(R.layout.layout_today_page, container, false);
             Question question = results.get(position);
             final EditText edit = (EditText) view.findViewById(R.id.today_write_text);
-            Button sendBtn = (Button) view.findViewById(R.id.today_write_button);
+            ImageView sendBtn = (ImageView) view.findViewById(R.id.today_write_button);
             sendBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -123,14 +124,20 @@ public class QuestionActivity extends Activity {
             });
 
 
-            SimpleDateFormat sf = new SimpleDateFormat("yy년 MM월 dd일");
+            SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
             TextView title = (TextView) view.findViewById(R.id.today_title);
             TextView body = (TextView) view.findViewById(R.id.today_body);
             title.setText(question.getContent());
-            body.setText(sf.format(question.getDate()).toString());
+
+            if("06월 28일".equals(sf.format(question.getDate()).toString())){
+                body.setText("오늘의 질문");
+            }
+            else{
+                body.setText(sf.format(question.getDate()).toString()+"의 질문");
+            }
+
 
             container.addView(view);
-
             return view;
         }
 

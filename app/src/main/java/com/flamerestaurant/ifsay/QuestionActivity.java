@@ -8,19 +8,16 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,6 +75,7 @@ public class QuestionActivity extends Activity {
         String utteranceId=this.hashCode() + "";
         myTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -98,7 +96,7 @@ public class QuestionActivity extends Activity {
             View view = getLayoutInflater().inflate(R.layout.layout_today_page, container, false);
             Question question = results.get(position);
             final EditText edit = (EditText) view.findViewById(R.id.today_write_text);
-            Button sendBtn = (Button) view.findViewById(R.id.today_write_button);
+            ImageView sendBtn = (ImageView) view.findViewById(R.id.today_write_button);
             sendBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

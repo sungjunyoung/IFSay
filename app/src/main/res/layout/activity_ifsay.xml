@@ -8,13 +8,24 @@
     android:paddingTop="15dp"
     tools:context="com.flamerestaurant.ifsay.IfsayActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="40sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/main_go_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/white_tree"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_name"
+            android:textColor="#fff"
+            android:textSize="40sp" />
+    </RelativeLayout>
 
     <View
         android:layout_width="150dp"
@@ -28,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        android:text="5월 20일의 질문"
+        android:text="5월 22일의 질문"
         android:textColor="#fff"
         android:textSize="20sp" />
 

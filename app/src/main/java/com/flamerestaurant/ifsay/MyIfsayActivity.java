@@ -1,7 +1,6 @@
 package com.flamerestaurant.ifsay;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
-
-import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -46,6 +44,7 @@ public class MyIfsayActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+        HueManager.fadeOut();
     }
 
     class Adapter extends RecyclerView.Adapter<Holder>{

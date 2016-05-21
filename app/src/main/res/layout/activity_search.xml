@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="com.flamerestaurant.ifsay.SearchActivity">
+
+    <RelativeLayout
+        android:id="@+id/circle_ifsay_main"
+        android:background="@color/abc_search_url_text_selected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/fake_search"
+            android:layout_alignTop="@id/fake_search"
+            android:src="@drawable/search_fake"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"/>
+        <LinearLayout
+            android:background="#45bf55"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/navigation">
+
+            <ImageView
+                android:id="@+id/tree_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/white_tree"
+                android:layout_width="80dp"
+                android:layout_height="35dp" />
+            <ImageView
+                android:id="@+id/search_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/white_search"
+                android:layout_width="80dp"
+                android:layout_height="35dp" />
+            <ImageView
+                android:id="@+id/main_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/white_logo"
+                android:layout_width="80dp"
+                android:layout_height="45dp" />
+            <ImageView
+                android:id="@+id/alarm_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/white_alarm"
+                android:layout_width="80dp"
+                android:layout_height="35dp" />
+            <ImageView
+                android:id="@+id/mypage_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/white_my"
+                android:layout_width="80dp"
+                android:layout_height="35dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

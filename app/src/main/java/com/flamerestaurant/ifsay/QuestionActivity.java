@@ -44,7 +44,7 @@ public class QuestionActivity extends Activity {
 
     public void onClickWite(View view) {
         Ifsay ifsay = new Ifsay();
-        ifsay.setId(pager.getCurrentItem());
+        ifsay.setIfsayId(pager.getCurrentItem());
         ifsay.setContent(edit.getText().toString());
 
         realm.beginTransaction();

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flamerestaurant.ifsay">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".IfsayApplication"
         android:allowBackup="true"
@@ -20,5 +21,4 @@
         <activity android:name=".IfsayActivity" />
         <activity android:name=".MyIfsayActivity" />
     </application>
-
 </manifest>

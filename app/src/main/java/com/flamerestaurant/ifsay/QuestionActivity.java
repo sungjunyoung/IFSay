@@ -8,18 +8,26 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.hue.HueManager;
 import com.flamerestaurant.ifsay.realm.Ifsay;
+import com.flamerestaurant.ifsay.realm.Question;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class QuestionActivity extends Activity {
 
@@ -28,8 +36,8 @@ public class QuestionActivity extends Activity {
     private Realm realm;
 
     private ViewPager pager;
-    private EditText edit;
     private TextToSpeech myTTS;
+    private RealmResults<Question> results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +45,11 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question);
 
         realm = Realm.getDefaultInstance();
+        results = realm.where(Question.class).findAll();
 
         pager = (ViewPager) findViewById(R.id.today_pager);
         pager.setAdapter(new Adapter());
 
-        edit = (EditText) findViewById(R.id.today_write_text);
         myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -77,37 +85,48 @@ public class QuestionActivity extends Activity {
         myTTS.shutdown();
     }
 
-    public void onClickWite(View view) {
-        realm.beginTransaction();
-
-        Ifsay ifsay = realm.createObject(Ifsay.class);
-        ifsay.setQuestionId(pager.getCurrentItem());
-        ifsay.setContent(edit.getText().toString());
-
-        realm.commitTransaction();
-
-        Intent intent = new Intent(this, IfsayActivity.class);
-        intent.putExtra("QustionId", pager.getCurrentItem());
-        HueManager.twinkle(3);
-        startActivity(intent);
-    }
-
     private class Adapter extends PagerAdapter {
 
         @Override
         public int getCount() {
-            return PAGE_SIZE;
+            return results.size();
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view = getLayoutInflater().inflate(R.layout.layout_today_page, container, false);
+            Question question = results.get(position);
+            final EditText edit = (EditText) view.findViewById(R.id.today_write_text);
+            Button sendBtn = (Button) view.findViewById(R.id.today_write_button);
+            sendBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    realm.beginTransaction();
 
+                    Ifsay ifsay = realm.createObject(Ifsay.class);
+                    ifsay.setQuestionId(pager.getCurrentItem());
+
+                    ifsay.setContent(edit.getText().toString());
+                    ifsay.setWriter("준영");
+                    ifsay.setRgb("#ffffff");
+                    ifsay.setDate(new Date(2016, 5, 22));
+                    ifsay.setIfsayId(30);
+
+                    realm.commitTransaction();
+
+                    Intent intent = new Intent(QuestionActivity.this, IfsayActivity.class);
+                    intent.putExtra("QustionId", pager.getCurrentItem());
+                    HueManager.twinkle(3);
+                    startActivity(intent);
+                }
+            });
+
+
+            SimpleDateFormat sf = new SimpleDateFormat("yy년 MM월 dd일");
             TextView title = (TextView) view.findViewById(R.id.today_title);
             TextView body = (TextView) view.findViewById(R.id.today_body);
-
-            title.setText(String.format("제목 %d", position));
-            body.setText(String.format("내용 %d", position));
+            title.setText(question.getContent());
+            body.setText(sf.format(question.getDate()).toString());
 
             container.addView(view);
 
@@ -124,4 +143,5 @@ public class QuestionActivity extends Activity {
             container.removeView((View) object);
         }
     }
+
 }

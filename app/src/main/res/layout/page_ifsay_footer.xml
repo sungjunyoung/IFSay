@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:background="#22000000"
         android:paddingLeft="10dp"
-        android:text="IF 공감한다면..." />
+        android:hint="IF 공감한다면..." />
 
 
     <FrameLayout

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.realm.Comment;
@@ -55,7 +56,7 @@ public class IfsayActivity extends Activity {
         public Object instantiateItem(ViewGroup container, int position) {
             View view = getLayoutInflater().inflate(R.layout.page_ifsay, container, false);
 
-            Ifsay ifsay = results.get(position);
+            final Ifsay ifsay = results.get(position);
 
             TextView writer = (TextView) view.findViewById(R.id.ifsay_writer);
             writer.setText(ifsay.getWriter());
@@ -64,8 +65,26 @@ public class IfsayActivity extends Activity {
             content.setText(ifsay.getContent());
 
             RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.ifsay_comment_list);
-            recyclerView.setAdapter(new CommentAdapter(ifsay.getIfsayId()));
+            final CommentAdapter commentAdapter = new CommentAdapter(ifsay.getIfsayId());
+            recyclerView.setAdapter(commentAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(IfsayActivity.this, LinearLayoutManager.VERTICAL, false));
+
+            final EditText editText = (EditText) view.findViewById(R.id.ifsay_comment);
+
+            View commentSay = view.findViewById(R.id.comment_say);
+            commentSay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    realm.beginTransaction();
+                    Comment comment = realm.createObject(Comment.class);
+                    comment.setIfsayId(ifsay.getIfsayId());
+                    comment.setWriter("나");
+                    comment.setContent(editText.getText().toString());
+                    realm.commitTransaction();
+                    commentAdapter.refresh();
+                    notifyDataSetChanged();
+                }
+            });
 
             container.addView(view);
             return view;
@@ -90,8 +109,14 @@ public class IfsayActivity extends Activity {
     private class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
 
         private RealmResults<Comment> results;
+        private int ifsayId;
 
         public CommentAdapter(int ifsayId) {
+            this.ifsayId = ifsayId;
+            refresh();
+        }
+
+        public void refresh() {
             results = realm.where(Comment.class).equalTo("ifsayId", ifsayId).findAll();
         }
 

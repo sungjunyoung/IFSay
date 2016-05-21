@@ -78,7 +78,7 @@ public class QuestionActivity extends Activity {
         myTTS.shutdown();
     }
 
-    public void onClickWite(View view) {
+    public void onClickWrite(View view) {
         realm.beginTransaction();
 
         Ifsay ifsay = realm.createObject(Ifsay.class);

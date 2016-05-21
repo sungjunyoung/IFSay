@@ -80,6 +80,7 @@
 
 
         <FrameLayout
+            android:id="@+id/comment_say"
             android:layout_width="40dp"
             android:layout_height="40dp">
 

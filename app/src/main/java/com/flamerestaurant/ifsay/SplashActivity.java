@@ -73,11 +73,15 @@ public class SplashActivity extends Activity {
         Ifsay ifsay7 = new Ifsay(6,4,"은범","끊어놓고 세번 갔던 PT를 끝까지 갔을꺼다. 돈도 돈이지만, 그때 운동했다면 ㅜ.ㅜ 술 조금만 덜먹고 더 뛰었다면.. 퇴원하면 꼭 다시 운동 열심히 할거다.",77,new Date(2016,5,22),"#ffffff");
         Ifsay ifsay8 = new Ifsay(7,4,"예진","저는 소설쓰는걸 배울거에요. 병원에 와서 책을 많이 읽고 써보기도하는데, 어떻게 시작해야할지 모르겠어요. 소설쓰는 법을 배우고 여행을 많이 다니면서 좋은 책을 쓰고싶어요",21,new Date(2016,5,22),"#ffffff");
         Ifsay ifsay9 = new Ifsay(8,4,"준영","회사 영업왕 실적을 꼭 찍을거에요. 힘들다고 욕하는 회사지만 사실 정말 재미있게 다녔거든요.. 선배들한테 배운걸 써먹고, 제 한계를 시험하고 싶어요",45,new Date(2016,5,22),"#ffffff");
+        Ifsay ifsay10 = new Ifsay(10,5,"예진","보약을 매일매일 챙겨먹을꺼야",6,new Date(2016,5,28),"#ffffff");
+        Ifsay ifsay11 = new Ifsay(11,5,"결","짝사랑하던 단짝친구에게 고백할꺼야",13,new Date(2016,5,28),"#ffffff");
+        Ifsay ifsay12 = new Ifsay(12,2,"은범","그러지 말았어야 했다.",27,new Date(2016,5,20),"#ffffff");
         ifsayList.add(ifsay1); ifsayList.add(ifsay2);
         ifsayList.add(ifsay3); ifsayList.add(ifsay4);
         ifsayList.add(ifsay5); ifsayList.add(ifsay6);
         ifsayList.add(ifsay7); ifsayList.add(ifsay8);
-        ifsayList.add(ifsay9);
+        ifsayList.add(ifsay9); ifsayList.add(ifsay10);
+        ifsayList.add(ifsay11); ifsayList.add(ifsay12);
 
         RealmList<Comment> commentList = new RealmList<Comment>();
         Comment comment1 = new Comment(0,2,"저도 비긴어게인 정말 좋아하는데","병훈",new Date(2016,5,19));
@@ -92,12 +96,18 @@ public class SplashActivity extends Activity {
         Comment comment10 = new Comment(9,8,"영업왕이 목표라니! 너무 멋진 남편감이에요!! (신부감일수도!!)","예진",new Date(2016,5,22));
         Comment comment11 = new Comment(10,8,"자기 일에 자부심을 갖는 모습 너무 좋은것 같아요. 퇴원하고 꼭 해내실수 있을거에요 응원합니다!","예진",new Date(2016,5,22));
         Comment comment12 = new Comment(11,8,"응원해요! 도움이 필요하면 저희를 찾아주세요 ㅎㅎ","은범",new Date(2016,5,22));
+        Comment comment13 = new Comment(12,4,"저는 자유로에서 새벽에 달리는게 소원인데","예진",new Date(2016,5,20));
+        Comment comment14 = new Comment(13,1,"잊었다고 생각한 옛사람이 다시 떠오르는건 생각만해도 싫어요...","준영",new Date(2016,5,20));
+        Comment comment15 = new Comment(14,2,"우와! 저도 비긴어게인 엄청좋아하는데!!","은범",new Date(2016,5,20));
+        Comment comment16 = new Comment(15,3,"첫장부터 읽기 싫을거 같아요...","예진",new Date(2016,5,20));
         commentList.add(comment1); commentList.add(comment2);
         commentList.add(comment3); commentList.add(comment4);
         commentList.add(comment5); commentList.add(comment6);
         commentList.add(comment7); commentList.add(comment8);
         commentList.add(comment9); commentList.add(comment10);
         commentList.add(comment11); commentList.add(comment12);
+        commentList.add(comment13); commentList.add(comment14);
+        commentList.add(comment15); commentList.add(comment16);
 
         realm.copyToRealm(commentList);
         realm.copyToRealm(ifsayList);

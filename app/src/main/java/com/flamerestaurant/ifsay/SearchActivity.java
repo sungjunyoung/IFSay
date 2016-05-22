@@ -25,7 +25,7 @@ public class SearchActivity extends Activity {
         treeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchActivity.this, IfsayActivity.class);
+                Intent intent = new Intent(SearchActivity.this, CircleListActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +71,6 @@ public class SearchActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        HueManager.fadeOut();
     }
 
 }

@@ -2,6 +2,7 @@ package com.flamerestaurant.ifsay.hue;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
@@ -10,6 +11,8 @@ import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHLightState;
+
+import java.util.Random;
 
 /**
  * Created by lineplus on 2016. 5. 21..
@@ -20,6 +23,7 @@ public class HueManager {
     public static void connect(PHAccessPoint accessPoint) {
         if (phHueSDK.isAccessPointConnected(accessPoint) == false) {
             phHueSDK.connect(accessPoint);
+            fadeIn();
         }
         return;
 
@@ -33,39 +37,53 @@ public class HueManager {
     public static void fadeIn() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
         PHLightState lightState = new PHLightState();
-        float xy[] = PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber());
-        lightState.setOn(true);
-        lightState.setX(xy[0]);
-        lightState.setY(xy[1]);
-        bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+        try {
+            float xy[] = PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber());
+            lightState.setOn(true);
+            lightState.setX(xy[0]);
+            lightState.setY(xy[1]);
+            bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+        } catch (Exception e) {
+            Log.e("HUE", e.getMessage());
+        }
     }
     public static void fadeOut() {
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-        PHLightState lightState = new PHLightState();
-        lightState.setOn(false);
-        bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+        try {
+            PHBridge bridge = phHueSDK.getSelectedBridge();
+            PHLightState lightState = new PHLightState();
+            lightState.setOn(false);
+            bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
+        } catch (Exception e) {
+            Log.e("HUE", e.getMessage());
+        }
     }
 
     public static void twinkle(final int times) {
-        new CountDownTimer(1200 * (times + 1), 1200) {
+        new CountDownTimer(700 * (times + 1), 600) {
             public void onTick(long millisUntilFinished) {
                 PHBridge bridge = phHueSDK.getSelectedBridge();
                 onAndOff(PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
                 PHUtilities.calculateXYFromRGB(23, 63, 28, bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
             }
-
             public void onFinish() {
             }
         }.start();
     }
     public static void alert(final int times) {
-        new CountDownTimer(1200 * (times + 1), 1200) {
+        new CountDownTimer(700 * (times + 1), 600) {
             public void onTick(long millisUntilFinished) {
                 PHBridge bridge = phHueSDK.getSelectedBridge();
-                onAndOff(PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
-                PHUtilities.calculateXYFromRGB(220, 20, 60, bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
+                Random random = new Random();
+                onAndOff(PHUtilities.calculateXYFromRGB(random.nextInt(255), random.nextInt(255), random.nextInt(255), bridge.getResourceCache().getAllLights().get(2).getModelNumber()),
+                PHUtilities.calculateXYFromRGB(random.nextInt(255), random.nextInt(255), random.nextInt(255), bridge.getResourceCache().getAllLights().get(2).getModelNumber()));
             }
             public void onFinish() {
+                PHBridge bridge = phHueSDK.getSelectedBridge();
+                PHLightState lightState = new PHLightState();
+                float[] floats = PHUtilities.calculateXYFromRGB(255, 211, 78, bridge.getResourceCache().getAllLights().get(2).getModelNumber());
+                lightState.setX(floats[0]);
+                lightState.setY(floats[1]);
+                bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
             }
         }.start();
     }
@@ -85,6 +103,6 @@ public class HueManager {
                 lightState.setY(defaultXy[1]);
                 bridge.updateLightState(bridge.getResourceCache().getAllLights().get(2), lightState);
             }
-        }, 500);
+        }, 600);
     }
 }

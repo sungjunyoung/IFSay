@@ -17,8 +17,11 @@ import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 import com.flamerestaurant.ifsay.realm.Question;
 
+import java.text.SimpleDateFormat;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class IfsayActivity extends Activity {
 
@@ -40,7 +43,11 @@ public class IfsayActivity extends Activity {
         TextView questionTitle = (TextView) findViewById(R.id.question_title);
         questionTitle.setText(question.getContent());
 
-        results = realm.where(Ifsay.class).equalTo("questionId", questionId).findAll();
+        SimpleDateFormat sf = new SimpleDateFormat("MM월 dd일");
+        TextView date = (TextView) findViewById(R.id.ifsay_date);
+        date.setText(sf.format(question.getDate()) + "의 질문");
+
+        results = realm.where(Ifsay.class).equalTo("questionId", questionId).findAllSorted("ifsayId", Sort.DESCENDING);
 
         pager = (ViewPager) findViewById(R.id.ifsay_pager);
         pager.setAdapter(new Adapter());
@@ -58,7 +65,6 @@ public class IfsayActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
-        HueManager.fadeOut();
     }
 
     private class Adapter extends PagerAdapter {
@@ -152,6 +158,7 @@ public class IfsayActivity extends Activity {
                             refresh();
                             notifyDataSetChanged();
                             recyclerView.scrollToPosition(getItemCount() - 1);
+                            HueManager.twinkle(2);
                         }
                     });
                     break;

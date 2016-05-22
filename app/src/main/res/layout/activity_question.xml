@@ -9,13 +9,11 @@
     tools:context="com.flamerestaurant.ifsay.IfsayActivity">
 
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="31dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="40sp" />
+        android:src="@drawable/ifsay" />
 
     <View
         android:layout_width="110dp"

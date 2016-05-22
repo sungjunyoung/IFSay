@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flamerestaurant.ifsay.realm.Comment;
 import com.flamerestaurant.ifsay.realm.Ifsay;
 
 import io.realm.Realm;
@@ -20,6 +21,7 @@ public class MyIfsayActivity extends Activity {
     private RealmResults<Ifsay> results;
     public int countOfAllIfsay;
     private TextView allIfsayTextView;
+    private RealmResults<Comment> comment_results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MyIfsayActivity extends Activity {
         setContentView(R.layout.activity_my_ifsay);
         realm = Realm.getDefaultInstance();
         results = realm.where(Ifsay.class).findAll();
+        comment_results = realm.where(Comment.class).findAll();
+
 
         ifsay_list = (RecyclerView) findViewById(R.id.my_ifsay_list);
         ifsay_list.setAdapter(new Adapter());
@@ -55,9 +59,14 @@ public class MyIfsayActivity extends Activity {
 
         @Override
         public void onBindViewHolder(Holder holder, int position) {
+            int count = 0;
+            for (Comment comment : comment_results){
+                if(comment.getIfsayId() == position) count++;
+            }
             Ifsay ifsay = results.get(position);
             holder.like_count.setText(String.valueOf(ifsay.getIfsayCount()));
             holder.ifsay_textview.setText(ifsay.getContent());
+            holder.comment_count.setText(String.valueOf(count));
         }
 
         @Override

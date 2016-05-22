@@ -118,6 +118,16 @@
             android:layout_alignLeft="@+id/question3"
             android:layout_alignStart="@+id/question3"
             android:onClick="onClickQuestion"/>
+
+        <ImageView
+            android:layout_width="112dp"
+            android:layout_height="160dp"
+            android:src="@drawable/circle6"
+            android:id="@+id/imageView2"
+            android:layout_above="@+id/question0"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
 
 </FrameLayout>

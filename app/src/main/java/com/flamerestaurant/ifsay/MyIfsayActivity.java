@@ -1,14 +1,21 @@
 package com.flamerestaurant.ifsay;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.realm.Ifsay;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Font;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -20,7 +27,16 @@ public class MyIfsayActivity extends Activity {
     private RealmResults<Ifsay> results;
     public int countOfAllIfsay;
     private TextView allIfsayTextView;
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +53,54 @@ public class MyIfsayActivity extends Activity {
             countOfAllIfsay += ifsay.getIfsayCount();
         }
         allIfsayTextView.setText(String.valueOf(countOfAllIfsay));
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        double unitWidth = width / 5.0;
+        ImageView treeBtn = (ImageView) findViewById(R.id.tree_btn);
+        treeBtn.getLayoutParams().width = (int) unitWidth;
+        treeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIfsayActivity.this, CircleListActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView searchBtn = (ImageView) findViewById(R.id.search_btn);
+        searchBtn.getLayoutParams().width = (int) unitWidth;
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIfsayActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView mainBtn = (ImageView) findViewById(R.id.main_btn);
+        mainBtn.getLayoutParams().width = (int) unitWidth;
+        mainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIfsayActivity.this, QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView alarmBtn = (ImageView) findViewById(R.id.alarm_btn);
+        alarmBtn.getLayoutParams().width = (int) unitWidth;
+        alarmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIfsayActivity.this, AlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView myPageBtn = (ImageView) findViewById(R.id.mypage_btn);
+        myPageBtn.getLayoutParams().width = (int) unitWidth;
+        myPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIfsayActivity.this, MyIfsayActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

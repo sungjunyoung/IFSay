@@ -166,6 +166,13 @@ public class IfsayActivity extends Activity {
                     break;
                 default:
                     ((CommentViewHolder) holder).comment.setText(results.get(position - 1).getContent());
+                    ((CommentViewHolder) holder).icon.setImageResource(R.drawable.blankicon);
+                    ((CommentViewHolder) holder).icon.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            Log.v("TOUCH", "clicked");
+                            ((CommentViewHolder) holder).icon.setImageResource(R.drawable.fullicon);
+                        }
+                    });
             }
         }
 
@@ -187,22 +194,12 @@ public class IfsayActivity extends Activity {
 
     private class CommentViewHolder extends RecyclerView.ViewHolder {
         public final TextView comment;
+        private final ImageView icon;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
             comment = (TextView) itemView.findViewById(R.id.comment_content);
-
-            final ImageView icon = (ImageView)findViewById(R.id.comment_ico);
-            icon.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
-                    if(v.getId() == R.id.comment_ico){
-                        icon.setImageResource(R.drawable.fullicon);
-                        Log.v("TAG","CLikcked!");
-                    }
-                }
-            });
-
+            icon = (ImageView) itemView.findViewById(R.id.comment_ico);
         }
     }
 

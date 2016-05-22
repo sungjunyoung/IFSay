@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/circle_ifsay_main"
-        android:background="@color/abc_search_url_text_selected"
+        android:background="#414d42"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
@@ -75,21 +75,20 @@
             android:layout_height="130dp"
             android:id="@+id/question0"
             android:src="@drawable/circle1"
-            android:layout_marginBottom="56dp"
-            android:layout_alignBottom="@+id/question2"
             android:layout_toLeftOf="@+id/ifsay_top_logo"
-            android:layout_toStartOf="@+id/ifsay_top_logo"
-            android:onClick="onClickQuestion"/>
+            android:onClick="onClickQuestion"
+            android:layout_alignBottom="@+id/question2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/question1"
             android:src="@drawable/circle2"
+            android:onClick="onClickQuestion"
             android:layout_above="@+id/question0"
-            android:layout_alignLeft="@+id/question0"
-            android:layout_alignStart="@+id/question0"
-            android:layout_marginBottom="22dp"
-            android:onClick="onClickQuestion"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -105,26 +104,27 @@
             android:layout_height="80dp"
             android:id="@+id/question3"
             android:src="@drawable/circle4"
+            android:onClick="onClickQuestion"
             android:layout_above="@+id/question4"
-            android:layout_alignRight="@+id/ifsay_top_logo"
-            android:layout_alignEnd="@+id/ifsay_top_logo"
-            android:onClick="onClickQuestion"/>
+            android:layout_toLeftOf="@+id/ifsay_top_logo"
+            android:layout_below="@+id/ifsay_top_desc"
+            android:layout_alignLeft="@+id/ifsay_top_desc"
+            android:layout_alignStart="@+id/ifsay_top_desc" />
         <ImageView
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:id="@+id/question4"
             android:src="@drawable/circle5"
+            android:onClick="onClickQuestion"
             android:layout_above="@+id/question2"
-            android:layout_alignLeft="@+id/question3"
-            android:layout_alignStart="@+id/question3"
-            android:onClick="onClickQuestion"/>
+            android:layout_centerHorizontal="true" />
 
         <ImageView
             android:layout_width="112dp"
             android:layout_height="160dp"
             android:src="@drawable/circle6"
             android:id="@+id/imageView2"
-            android:layout_above="@+id/question0"
+            android:layout_above="@+id/question1"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

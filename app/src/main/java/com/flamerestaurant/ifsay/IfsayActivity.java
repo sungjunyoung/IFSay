@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flamerestaurant.ifsay.hue.HueManager;
@@ -144,6 +145,12 @@ public class IfsayActivity extends Activity {
                     ((HeaderViewHolder) holder).writer.setText(ifsay.getWriter());
                     ((HeaderViewHolder) holder).content.setText(ifsay.getContent());
                     ((HeaderViewHolder) holder).likeCount.setText(String.format("%d명이 잎새를 달았습니다.", ifsay.getIfsayCount()));
+                    ((HeaderViewHolder) holder).icon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            v.setSelected(!v.isSelected());
+                        }
+                    });
                     break;
                 case 2:
                     ((FooterViewHolder) holder).commentSay.setOnClickListener(new View.OnClickListener() {
@@ -196,12 +203,14 @@ public class IfsayActivity extends Activity {
         public final TextView writer;
         public final TextView content;
         public final TextView likeCount;
+        public final ImageView icon;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
             writer = (TextView) itemView.findViewById(R.id.ifsay_writer);
             content = (TextView) itemView.findViewById(R.id.ifsay_content);
             likeCount = (TextView) itemView.findViewById(R.id.ifsay_count);
+            icon = (ImageView) itemView.findViewById(R.id.comment_ico);
         }
     }
 
